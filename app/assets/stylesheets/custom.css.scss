@@ -39,6 +39,27 @@ $navbar-default-bg: #336699;
   height:600px;
 }
 
+
+.article-actions {
+     border-top: 1px solid #eaeaea;
+     padding-top: 5px;
+     }
+
+.description {
+     margin-top: 0;
+     }
+
+.article-title {
+      font-weight: bold;
+      font-size: 1.5em;
+      }
+      
+.article-body {
+      border-top: 1px solid #eaeaea;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      }
+
 .footer {
     color:black;
     text-align:right; 
