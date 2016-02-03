@@ -22,7 +22,7 @@ class ArticlesController<ApplicationController
     # linkidan pirdapir gadmocemuli parameterbis mnishvnelobis minicheba @article cvladistvis
     # amisatvis metods=article_params vqmnit 
      @article = Article.new(article_params)
-    
+     @article.user=User.first
     # axal chanawerebs rom gaaketebs bazashi mere gadadis show gverdze. uamisod ar icis sad wavides da errori gamodis ekranze
 
     
