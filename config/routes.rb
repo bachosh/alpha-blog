@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   
   root 'pages#home'
   get 'about', to: 'pages#about'
+  get 'signup', to: 'users#new'    # signup linkis gagrdzeleba, user action controleri, new= action
+  #post 'users', to: 'users#create' # htmls post is migebis gawera to users controleris create actionshi
+  resources :users, except: [:new]
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
