@@ -1,6 +1,8 @@
 class ArticlesController<ApplicationController
   
   before_action :set_article, only: [:edit, :update, :show, :destroy]
+  before_action :require_user, except: [:index, :show]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   
   def index
    # @all_articles=Article.all  paging is dasamateblad shevcvale.  gem failis mixedvit
@@ -23,7 +25,7 @@ class ArticlesController<ApplicationController
     # linkidan pirdapir gadmocemuli parameterbis mnishvnelobis minicheba @article cvladistvis
     # amisatvis metods=article_params vqmnit 
      @article = Article.new(article_params)
-     @article.user=User.first
+     @article.user=current_user
     # axal chanawerebs rom gaaketebs bazashi mere gadadis show gverdze. uamisod ar icis sad wavides da errori gamodis ekranze
 
     
@@ -79,6 +81,10 @@ class ArticlesController<ApplicationController
       params.require(:article).permit(:title, :description)
     end    
     
-    
-    
+    def require_same_user
+      if current_user!=@article.user
+        flash[:danger] = 'you can only edit or delete your own articles'
+        redirect_to root_path
+      end
+    end
 end  
