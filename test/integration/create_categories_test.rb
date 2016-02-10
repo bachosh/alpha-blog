@@ -2,7 +2,13 @@ require 'test_helper'
 
 class CreateCategoriesTest < ActionDispatch::IntegrationTest
   
+  def setup
+       @user=User.create(username:'Admin1', email:'admin1@a.a', password:'a', admin: true)
+  end  
+  
   test "get new category  form and create category" do
+      sign_in_as(@user,'a')
+      
       get new_category_path # vamowmebt  links
     
       assert_template 'categories/new' # vamowmebt templates html.erb files 
@@ -20,6 +26,7 @@ class CreateCategoriesTest < ActionDispatch::IntegrationTest
   end  
   
   test "invalid category submission results in failure" do
+      sign_in_as(@user,'a')    
       get new_category_path
       assert_template 'categories/new'
           assert_no_difference 'Category.count' do
@@ -29,5 +36,9 @@ class CreateCategoriesTest < ActionDispatch::IntegrationTest
         assert_select 'h2.panel-title'
         assert_select 'div.panel-body'
   end
+  
+  
+  
+  
   
 end
