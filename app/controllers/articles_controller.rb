@@ -78,8 +78,12 @@ class ArticlesController<ApplicationController
     
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :description)
-    end    
+      params.require(:article).permit(:title, :description , category_ids:[])
+      # category_ids:[] gamoiyeneba create actionshi @article = Article.new(article_params) aq ketdeba whitelist ingi
+      #[] aris array form
+      # radgan cxrilebs shoris gawerilia constraintebi, 
+      # @article rails avtomaturad xvdeba masivshi ra uyos
+    end
     
     def require_same_user
       if current_user!=@article.user and !current_user.admin?
